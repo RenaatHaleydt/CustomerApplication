@@ -1,0 +1,69 @@
+_schema-version: "3.2"
+ID: CustomerApplication
+description: SAPUI5 application of the Customer project in SAP S4 HANA
+version: 0.0.1
+modules:
+- name: CustomerApplication-dest-content
+  type: com.sap.application.content
+  requires:
+  - name: CustomerApplication-destination-service
+    parameters:
+      content-target: true
+  - name: CustomerApplication-repo-host
+    parameters:
+      service-key:
+        name: CustomerApplication-repo-host-key
+  - name: CustomerApplication-uaa
+    parameters:
+      service-key:
+        name: CustomerApplication-uaa-key
+  parameters:
+    content:
+      instance:
+        destinations:
+        - Name: CustomerApplication_repo_host
+          ServiceInstanceName: CustomerApplication-html5-srv
+          ServiceKeyName: CustomerApplication-repo-host-key
+          sap.cloud.service: CustomerApplication
+        - Authentication: OAuth2UserTokenExchange
+          Name: CustomerApplication_uaa
+          ServiceInstanceName: CustomerApplication-xsuaa-srv
+          ServiceKeyName: CustomerApplication-uaa-key
+          sap.cloud.service: CustomerApplication
+        existing_destinations_policy: update
+  build-parameters:
+    no-source: true
+resources:
+- name: CustomerApplication-uaa
+  type: org.cloudfoundry.managed-service
+  parameters:
+    path: ./xs-security.json  
+    service: xsuaa
+    service-name: CustomerApplication-xsuaa-srv
+    service-plan: application
+- name: CustomerApplication-destination-service
+  type: org.cloudfoundry.managed-service
+  parameters:
+    config:
+      HTML5Runtime_enabled: true
+      version: 1.0.0
+      init_data:
+        instance:
+          existing_destinations_policy: update
+          destinations:
+          - Name: ui5
+            Type: HTTP
+            URL: https://ui5.sap.com
+            ProxyType: Internet
+            Authentication: NoAuthentication
+    service: destination
+    service-name: CustomerApplication-destination-service
+    service-plan: lite
+- name: CustomerApplication-repo-host
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-name: CustomerApplication-html5-srv
+    service-plan: app-host
+parameters:
+  deploy_mode: html5-repo
