@@ -4,9 +4,22 @@
     xmlns="sap.m" xmlns:f="sap.f"
 	height="100%" >
     <!--<App id="app">-->
-    <f:FlexibleColumnLayout id="fcl" backgroundDesign="Solid">
-    <f:beginColumnPages>
-			<mvc:XMLView id="beginView" viewName="ap.customerapplication.view.Main"/>
-		</f:beginColumnPages></f:FlexibleColumnLayout>
+    <f:FlexibleColumnLayout
+        id="fcl"
+        backgroundDesign="Solid"
+    >
+        <f:beginColumnPages>
+            <mvc:XMLView
+                id="beginView"
+                viewName="ap.customerapplication.view.Main"
+            />
+        </f:beginColumnPages>
+        <f:midColumnPages>
+            <mvc:XMLView
+                id="detailView"
+                viewName="ap.customerapplication.view.CustomerDetail"
+            />
+        </f:midColumnPages>
+    </f:FlexibleColumnLayout>
     <!--</App>-->
 </mvc:View>
