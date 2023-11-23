@@ -2,6 +2,73 @@
     xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
     xmlns="sap.m">
     <Page id="page" title="{i18n>title}">
-        <content />
+        <content>
+        <Text text="Test"/>
+            <Table
+                id="productsTable"
+                items="{/CustomerSet}"
+                headerText="Products (Click on an item to set as navigated)"
+            >
+                <columns>
+                    <Column
+                        id="kunnrCol"
+                        width="12em"
+                    >
+                        <VBox>
+                            <Text text="Kunnr" />
+                            <Text text="Name" />
+                        </VBox>
+                    </Column>
+                    <Column
+                        id="custcountryCol"
+                        minScreenWidth="Tablet"
+                        demandPopin="true"
+                        hAlign="End"
+                    >
+                        <Text text="Country" />
+                    </Column>
+                    <Column
+                        id="custcityCol"
+                        minScreenWidth="Tablet"
+                        demandPopin="true"
+                        hAlign="End"
+                    >
+                        <Text text="City" />
+                    </Column>
+                    <Column
+                        id="custpostalcodeCol"
+                        minScreenWidth="Tablet"
+                        demandPopin="true"
+                        hAlign="End"
+                    >
+                        <Text text="Postal Code" />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem
+                        type="Active"
+                        vAlign="Middle"
+                        navigated="{
+						parts: [
+							'settings>/navigatedItem',
+							'CustomerID'
+						],
+						formatter: '.isNavigated'
+					}"
+                        press="onPress"
+                    >
+                        <cells>
+                            <ObjectIdentifier
+                                title="{Name}"
+                                text="{Kunnr}"
+                            />
+                            <Text text="{Country}" />
+                            <Text text="{City}" />
+                            <Text text="{Postcode}" />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </content>
     </Page>
 </mvc:View>
