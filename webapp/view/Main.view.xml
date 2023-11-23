@@ -1,9 +1,9 @@
 <mvc:View controllerName="ap.customerapplication.controller.Main"
-    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
-    xmlns="sap.m">
+    xmlns="sap.m"
+	xmlns:f="sap.f"
+	xmlns:mvc="sap.ui.core.mvc" displayBlock="true">
     <Page id="page" title="{i18n>title}">
         <content>
-        <Text text="Test"/>
             <Table
                 id="productsTable"
                 items="{/CustomerSet}"
@@ -45,18 +45,7 @@
                     </Column>
                 </columns>
                 <items>
-                    <ColumnListItem
-                        type="Active"
-                        vAlign="Middle"
-                        navigated="{
-						parts: [
-							'settings>/navigatedItem',
-							'CustomerID'
-						],
-						formatter: '.isNavigated'
-					}"
-                        press="onPress"
-                    >
+                    <ColumnListItem type="Navigation" vAlign="Middle" press="onPress">
                         <cells>
                             <ObjectIdentifier
                                 title="{Name}"
