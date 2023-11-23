@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="ZSD_002_CUSTOMER_SRV" xml:lang="en" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <Annotation Term="Core.SchemaVersion" String="1.0.0" xmlns="http://docs.oasis-open.org/odata/ns/edm"/>
+            <EntityType Name="Customer" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Kunnr"/>
+                </Key>
+                <Property Name="Kunnr" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Customer" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Name" Type="Edm.String" MaxLength="30" sap:unicode="false" sap:label="Name 1"/>
+                <Property Name="Country" Type="Edm.String" MaxLength="3" sap:unicode="false" sap:label="Country/Reg."/>
+                <Property Name="City" Type="Edm.String" MaxLength="25" sap:unicode="false" sap:label="City"/>
+                <Property Name="Postcode" Type="Edm.String" MaxLength="10" sap:unicode="false" sap:label="Postal Code"/>
+                <NavigationProperty Name="Customer_SalesSet" Relationship="ZSD_002_CUSTOMER_SRV.Customer_Cust_Sales" FromRole="FromRole_Customer_Cust_Sales" ToRole="ToRole_Customer_Cust_Sales"/>
+            </EntityType>
+            <EntityType Name="Customer_Sales" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Kunnr"/>
+                    <PropertyRef Name="Erdat"/>
+                </Key>
+                <Property Name="Kunnr" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Customer" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Vtweg" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Distr. Channel" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Erdat" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="Created On" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Lprio" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Delivery Prior." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="CustomerSet" Relationship="ZSD_002_CUSTOMER_SRV.Customer_Cust_Sales" FromRole="ToRole_Customer_Cust_Sales" ToRole="FromRole_Customer_Cust_Sales"/>
+            </EntityType>
+            <Association Name="Customer_Cust_Sales" sap:content-version="1">
+                <End Type="ZSD_002_CUSTOMER_SRV.Customer" Multiplicity="*" Role="FromRole_Customer_Cust_Sales"/>
+                <End Type="ZSD_002_CUSTOMER_SRV.Customer_Sales" Multiplicity="1" Role="ToRole_Customer_Cust_Sales"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_Customer_Cust_Sales">
+                        <PropertyRef Name="Kunnr"/>
+                    </Principal>
+                    <Dependent Role="ToRole_Customer_Cust_Sales">
+                        <PropertyRef Name="Kunnr"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <EntityContainer Name="ZSD_002_CUSTOMER_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="CustomerSet" EntityType="ZSD_002_CUSTOMER_SRV.Customer" sap:searchable="true" sap:content-version="1"/>
+                <EntitySet Name="Customer_SalesSet" EntityType="ZSD_002_CUSTOMER_SRV.Customer_Sales" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <AssociationSet Name="Customer_Cust_SalesSet" Association="ZSD_002_CUSTOMER_SRV.Customer_Cust_Sales" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="CustomerSet" Role="FromRole_Customer_Cust_Sales"/>
+                    <End EntitySet="Customer_SalesSet" Role="ToRole_Customer_Cust_Sales"/>
+                </AssociationSet>
+            </EntityContainer>
+            <atom:link rel="self" href="https://A03Z.UCC.OVGU.DE:443/sap/opu/odata/sap/ZSD_002_CUSTOMER_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="latest-version" href="https://A03Z.UCC.OVGU.DE:443/sap/opu/odata/sap/ZSD_002_CUSTOMER_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>
