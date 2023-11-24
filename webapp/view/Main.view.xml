@@ -5,10 +5,24 @@
     <Page id="page" title="{i18n>title}">
         <content>
             <Table
-                id="productsTable"
+                id="customersTable"
                 items="{/CustomerSet}"
-                headerText="Products (Click on an item to set as navigated)"
             >
+            <headerToolbar>
+				<OverflowToolbar>
+					<Title text="Customers" level="H2"/>
+					<ToolbarSpacer/>
+					<Button
+						tooltip="Sort"
+						icon="sap-icon://sort"
+						press="handleSortButtonPressed"/>
+					<Button
+						tooltip="Filter"
+						icon="sap-icon://filter"
+						press="handleFilterButtonPressed"/>
+					
+				</OverflowToolbar>
+			</headerToolbar>
                 <columns>
                     <Column
                         id="kunnrCol"
