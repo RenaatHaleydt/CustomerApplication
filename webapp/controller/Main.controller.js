@@ -18,10 +18,11 @@ sap.ui.define([
 			    this._mViewSettingsDialogs = {};
             },
 
-            onListItemPress: function () {
-                var oFCL = this.oView.getParent().getParent();
+            onListItemPress: function (oEvent) {
+                let sCustomerPath = oEvent.getSource().getBindingContext().getPath(),
+                oSelectedCustomer = sCustomerPath.split("'")[1]; // We split the path /CustomerSet('145999') into 3 pieces by splitting on '
 
-                oFCL.setLayout(fioriLibrary.LayoutType.TwoColumnsMidExpanded);
+			    this.getOwnerComponent().getRouter().navTo("detail", {layout: fioriLibrary.LayoutType.TwoColumnsMidExpanded, customer: oSelectedCustomer});
             },
             handleSortButtonPressed: function () {
                 this.getViewSettingsDialog("ap.customerapplication.fragments.sortDialog")

@@ -17,7 +17,7 @@
     },
     "dataSources": {
       "mainService": {
-        "uri": "/sap/opu/odata/sap/ZSD_002_CUSTOMER_SRV/",
+        "uri": "/sap/opu/odata/sap/ZSD_002_GW_CUSTOMER_SRV/",
         "type": "OData",
         "settings": {
           "annotations": [],
@@ -88,6 +88,46 @@
       "type": "XML",
       "async": true,
       "id": "fcl"
+    },
+  "routing": {
+    "config": {
+      "routerClass": "sap.f.routing.Router",
+      "type": "View",
+      "viewType": "XML",
+      "path": "ap.customerapplication.view",
+      "controlId": "fcl",
+      "transition": "slide",
+      "bypassed": {},
+      "async": true,
+      "clearControlAggregation": false
+    },
+    "routes": [
+      {
+        "pattern": ":?layout:",
+        "name": "master",
+        "target": [
+          "master"
+        ]
+      },
+      {
+        "pattern": "detail/{customer}/{layout}",
+        "name": "detail",
+        "target": [
+          "master",
+          "detail"
+        ]
+      }
+    ],
+    "targets": {
+      "master": {
+        "viewName": "Main",
+        "controlAggregation": "beginColumnPages"
+      },
+      "detail": {
+        "viewName": "CustomerDetail",
+        "controlAggregation": "midColumnPages"
+      }
     }
+  }
   }
 }
