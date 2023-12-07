@@ -22,13 +22,14 @@ sap.ui.define([
 
 			    this.getOwnerComponent().getRouter().navTo("detail", {layout: fioriLibrary.LayoutType.TwoColumnsMidExpanded, customer: oSelectedCustomer});
             },
+            onNavToOffers: function(oEvent){
+                this.getOwnerComponent().getRouter().navTo("offers");
+            },
             handleSortButtonPressed: function () {
                 SortAndFilterHelper.handleSortButtonPressed(this, "ap.customerapplication.fragments.sortDialog")
-                
             },
             handleFilterButtonPressed: function () {
                 SortAndFilterHelper.handleFilterButtonPressed(this, "ap.customerapplication.fragments.filterDialog")
-                
             },
             handleSortDialogConfirm: function (oEvent) {
                 SortAndFilterHelper.handleSortDialogConfirm(oEvent, this, "customersTable")

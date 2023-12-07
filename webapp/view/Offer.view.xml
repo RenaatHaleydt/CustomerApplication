@@ -1,12 +1,11 @@
-<mvc:View controllerName="ap.customerapplication.controller.Main"
+<mvc:View controllerName="ap.customerapplication.controller.Offer"
     xmlns="sap.m"
-	xmlns:f="sap.f"
 	xmlns:mvc="sap.ui.core.mvc" displayBlock="true">
     <Page id="page">
         <content>
-            <Button icon="sap-icon://activities" type="Transparent" press="onNavToOffers" text="Nav to Offers" />
-            <Table
-                id="customersTable"
+            <Button icon="sap-icon://customer-and-contacts" text="Nav to Customers" type="Transparent" press="onNavToCustomers" />
+            <!-- <Table
+                id="offerssTable"
                 items="{/CustomerSet}"
             >
             <headerToolbar>
@@ -72,7 +71,7 @@
                         </cells>
                     </ColumnListItem>
                 </items>
-            </Table>
+            </Table> -->
         </content>
     </Page>
 </mvc:View>

@@ -116,6 +116,13 @@
           "master",
           "detail"
         ]
+      },
+      {
+        "pattern": "offers",
+        "name": "offers",
+        "target": [
+          "offer"
+        ]
       }
     ],
     "targets": {
@@ -126,6 +133,10 @@
       "detail": {
         "viewName": "CustomerDetail",
         "controlAggregation": "midColumnPages"
+      },
+      "offer": {
+        "viewName": "Offer",
+        "controlAggregation": "beginColumnPages"
       }
     }
   }
