@@ -7,57 +7,28 @@
     <ObjectPageLayout
 		id="ObjectPageLayout"
 		showTitleInHeaderContent="true"
-		alwaysShowContentHeader="false"
+		alwaysShowContentHeader="true"
 		preserveHeaderStateOnScroll="false"
 		headerContentPinnable="true"
 		isChildPage="true"
 		upperCaseAnchorBar="false">
         <headerTitle>
-			<ObjectPageDynamicHeaderTitle>
-				<actions>
-				</actions>
-			</ObjectPageDynamicHeaderTitle>
+			<ObjectPageHeader objectTitle="{Name}"
+							  objectSubtitle="{Kunnr}" isObjectSubtitleAlwaysVisible="false" isObjectTitleAlwaysVisible="false">
+				
+			</ObjectPageHeader>
 		</headerTitle>
         <headerContent>
 			<m:FlexBox wrap="Wrap" fitContainer="true" alignItems="Stretch">
 				<m:VBox justifyContent="Center" class="sapUiSmallMarginEnd">
-					<m:Label text="Main Category"/>
+					<m:Label text="{Country}"/>
+					<m:ObjectAttribute text="{City} - {Postalcode}"/>
 				</m:VBox>
-				<m:VBox justifyContent="Center" class="sapUiSmallMarginEnd">
-					<m:Label text="Subcategory"/>
-				</m:VBox>
-				<m:VBox justifyContent="Center" class="sapUiSmallMarginEnd">
-					<m:Label text="Price"/>
-				</m:VBox>
+				
 			</m:FlexBox>
 		</headerContent>
         <sections>
-			<ObjectPageSection title="General Information">
-				<subSections>
-					<ObjectPageSubSection>
-						<blocks>
-							<form:SimpleForm
-								maxContainerCols="2"
-								editable="false"
-								layout="ResponsiveGridLayout"
-								labelSpanL="12"
-								labelSpanM="12"
-								emptySpanL="0"
-								emptySpanM="0"
-								columnsL="1"
-								columnsM="1">
-								<form:content>
-									<m:Label text="Product ID"/>
-									<m:Label text="Description"/>
-									<m:Label text="Supplier"/>
-								</form:content>
-							</form:SimpleForm>
-						</blocks>
-					</ObjectPageSubSection>
-				</subSections>
-			</ObjectPageSection>
-
-			<ObjectPageSection title="Suppliers">
+			<ObjectPageSection title="Sales">
 				<subSections>
 					<ObjectPageSubSection>
 						<blocks>

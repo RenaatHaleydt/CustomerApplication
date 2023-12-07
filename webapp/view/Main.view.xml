@@ -2,7 +2,7 @@
     xmlns="sap.m"
 	xmlns:f="sap.f"
 	xmlns:mvc="sap.ui.core.mvc" displayBlock="true">
-    <Page id="page" title="{i18n>title}">
+    <Page id="page">
         <content>
             <Table
                 id="customersTable"
@@ -67,7 +67,7 @@
                             />
                             <Text text="{Country}" />
                             <Text text="{City}" />
-                            <Text text="{Postcode}" />
+                            <Text text="{Postalcode}" />
                         </cells>
                     </ColumnListItem>
                 </items>

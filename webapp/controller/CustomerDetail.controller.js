@@ -16,8 +16,12 @@ sap.ui.define([
             _onCustomerMatched: function (oEvent) {
                 let sCustomerID = oEvent.getParameter("arguments").customer || "0";
                 this.getView().bindElement({
-                    path: `/CustomerSet('${sCustomerID}')`,
-                    model: ""
+                    path: `/CustomerSet('${sCustomerID}')`
+                    // ,
+                    // parameters: {
+                    //     $expand: "Customer_SalesSet",
+                    //     $filter: "Kunnr eq '" + sCustomerID +  "'"
+                    // }
                 });
             },
     
