@@ -2,12 +2,14 @@ sap.ui.define([
     "sap/ui/core/mvc/Controller",
     'sap/ui/Device',
     'sap/f/library',
-    '../util/SortAndFilterHelper'
+    '../util/SortAndFilterHelper',
+    'sap/ui/export/Spreadsheet',
+    'sap/ui/export/library'
 ],
     /**
      * @param {typeof sap.ui.core.mvc.Controller} Controller
      */
-    function (Controller, Device, fioriLibrary, SortAndFilterHelper) {
+    function (Controller, Device, fioriLibrary, SortAndFilterHelper, Spreadsheet, exportLibrary) {
         "use strict";
 
         return Controller.extend("ap.customerapplication.controller.Main", {
@@ -36,6 +38,61 @@ sap.ui.define([
             },
             handleFilterDialogConfirm: function (oEvent) {
                 SortAndFilterHelper.handleFilterDialogConfirm(oEvent, this, 'customersTable')
+            },
+            onExport: function(oEvent) {
+                let aCols, oRowBinding, oSettings, oSheet, oTable;
+                
+    
+                oTable = this.getView().byId("customersTable")
+                oRowBinding = oTable.getBinding('items')
+                aCols = this.createColumnConfig()
+    
+                oSettings = {
+                    workbook: {
+                        columns: aCols,
+                        hierarchyLevel: 'Level'
+                    },
+                    dataSource: oRowBinding,
+                    fileName: 'Table export sample.xlsx',
+                    worker: false // We need to disable worker because we are using a MockServer as OData Service
+                };
+    
+                oSheet = new Spreadsheet(oSettings);
+                oSheet.build().finally(function() {
+                    oSheet.destroy();
+                });
+            },
+            createColumnConfig: function() {
+                let aCols = []
+                let EdmType = exportLibrary.EdmType
+    
+                aCols.push({
+                    label: 'Id',
+                    property: ['Kunnr'],
+                    type: EdmType.String,
+                    template: 'Whatever you want - {0}'
+                });
+    
+                aCols.push({
+                    label: 'Name',
+                    type: EdmType.String,
+                    property: 'Name',
+                    scale: 0
+                });
+    
+                aCols.push({
+                    property: 'Country',
+                    type: EdmType.String
+                });
+    
+                aCols.push({
+                    property: 'City',
+                    type: EdmType.String
+                });
+    
+                
+    
+                return aCols;
             },
         });
     });
