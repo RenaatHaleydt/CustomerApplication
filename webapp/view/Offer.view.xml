@@ -4,74 +4,59 @@
     <Page id="page">
         <content>
             <Button icon="sap-icon://customer-and-contacts" text="Nav to Customers" type="Transparent" press="onNavToCustomers" />
-            <!-- <Table
+            <Table
                 id="offerssTable"
-                items="{/CustomerSet}"
+                items="{path: '/OfferSet', sorter: { path: 'Creadate', descending: false}, parameters: {expand: 'OfferMaterials'}}"
             >
             <headerToolbar>
 				<OverflowToolbar>
-					<Title text="Customers" level="H2"/>
+					<Title text="Offers" level="H2"/>
 					<ToolbarSpacer/>
-					<Button
+					<!-- <Button
 						tooltip="Sort"
 						icon="sap-icon://sort"
 						press="handleSortButtonPressed"/>
 					<Button
 						tooltip="Filter"
 						icon="sap-icon://filter"
-						press="handleFilterButtonPressed"/>
+						press="handleFilterButtonPressed"/> -->
 					
 				</OverflowToolbar>
 			</headerToolbar>
                 <columns>
                     <Column
-                        id="kunnrCol"
                         width="12em"
                     >
                         <VBox>
-                            <Text text="Kunnr" />
-                            <Text text="Name" />
+                            <Text text="ID" />
                         </VBox>
                     </Column>
                     <Column
-                        id="custcountryCol"
                         minScreenWidth="Tablet"
                         demandPopin="true"
                         hAlign="End"
                     >
-                        <Text text="Country" />
+                        <Text text="Customer Id" />
                     </Column>
                     <Column
-                        id="custcityCol"
                         minScreenWidth="Tablet"
                         demandPopin="true"
                         hAlign="End"
                     >
-                        <Text text="City" />
+                        <Text text="Creation Date" />
                     </Column>
-                    <Column
-                        id="custpostalcodeCol"
-                        minScreenWidth="Tablet"
-                        demandPopin="true"
-                        hAlign="End"
-                    >
-                        <Text text="Postal Code" />
-                    </Column>
+                    
                 </columns>
                 <items>
                     <ColumnListItem type="Navigation" vAlign="Middle" press=".onListItemPress">
                         <cells>
-                            <ObjectIdentifier
-                                title="{Name}"
-                                text="{Kunnr}"
-                            />
-                            <Text text="{Country}" />
-                            <Text text="{City}" />
-                            <Text text="{Postalcode}" />
+                            <Text text="{Id}" />
+                            <Text text="{Kunnr}" />
+                            <Text text="{Creadate}" />
                         </cells>
                     </ColumnListItem>
                 </items>
-            </Table> -->
+            </Table>
         </content>
     </Page>
 </mvc:View>

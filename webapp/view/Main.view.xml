@@ -13,6 +13,7 @@
 				<OverflowToolbar>
 					<Title text="Customers" level="H2"/>
 					<ToolbarSpacer/>
+                    <Button icon="sap-icon://excel-attachment" press="onExport"/>
 					<Button
 						tooltip="Sort"
 						icon="sap-icon://sort"
