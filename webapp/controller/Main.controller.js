@@ -89,9 +89,7 @@ sap.ui.define([
                     property: 'City',
                     type: EdmType.String
                 });
-    
-                
-    
+
                 return aCols;
             },
         });
