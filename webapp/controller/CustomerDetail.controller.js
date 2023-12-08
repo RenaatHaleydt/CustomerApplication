@@ -23,6 +23,11 @@ sap.ui.define([
                     //     $filter: "Kunnr eq '" + sCustomerID +  "'"
                     // }
                 });
+
+                this.getView().byId("customerSalesTable").bindItems({
+                    path: `/CustomerSet('${sCustomerID}')/Customer_SalesSet`,
+                    template: this.getView().byId("customerSalesTable").getBindingInfo("items").template
+                });
             },
     
             onExit: function () {

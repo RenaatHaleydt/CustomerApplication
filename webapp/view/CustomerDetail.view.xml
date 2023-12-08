@@ -32,7 +32,37 @@
 				<subSections>
 					<ObjectPageSubSection>
 						<blocks>
-							<m:Text text="Here comes the sales data table"/>
+							<m:Table
+                id="customerSalesTable"
+				items="{/CustomerSet('134999')/Customer_SalesSet}"
+            >	
+            
+                <m:columns>
+                    <m:Column
+                        minScreenWidth="Tablet"
+                        demandPopin="true"
+                        hAlign="End"
+                    >
+                        <m:Text text="Customer number" />
+                    </m:Column>
+                    <m:Column
+                        id="custcityCol"
+                        minScreenWidth="Tablet"
+                        demandPopin="true"
+                        hAlign="End"
+                    >
+                        <m:Text text="Distribution Channel" />
+                    </m:Column>
+                </m:columns>
+                <m:items>
+                    <m:ColumnListItem type="Navigation" vAlign="Middle" press=".onListItemPress">
+                        <m:cells>
+                            <m:Text text="{Kunnr}" />
+                            <m:Text text="{Vtweg}" />
+                        </m:cells>
+                    </m:ColumnListItem>
+                </m:items>
+            </m:Table>
 						</blocks>
 					</ObjectPageSubSection>
 				</subSections>
