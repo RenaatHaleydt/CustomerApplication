@@ -52,7 +52,7 @@
                         <cells>
                             <Text text="{Id}" />
                             <Text text="{Kunnr}" />
-                            <Text text="{Creadate}" />
+                            <Text text="{ path: 'Creadate', type: 'sap.ui.model.type.DateTime', formatOptions: { UTC:true, pattern: 'dd/MM/yyyy' }}" />
                         </cells>
                     </ColumnListItem>
                 </items>
