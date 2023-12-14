@@ -65,9 +65,33 @@ sap.ui.define(['sap/ui/Device','sap/ui/model/Sorter',
 
             // apply filter settings
             oBinding.filter(aFilters);
-
-            // update filter bar
-            // this.byId("vsdFilterBar").setVisible(aFilters.length > 0);
-            // this.byId("vsdFilterLabel").setText(mParams.filterString);
         },
+        handleFilterBarGo: function (oController, sTableName) {
+            let oTable = oController.byId(sTableName),
+                oFilterBar = oController.getView().byId("filterbar"),
+                oBinding = oTable.getBinding("items")
+
+            let aTableFilters = oFilterBar.getFilterGroupItems().reduce(function (aResult, oFilterGroupItem) {
+				var oControl = oFilterGroupItem.getControl(),
+					aSelectedKeys = oControl.getSelectedKeys(),
+					aFilters = aSelectedKeys.map(function (sSelectedKey) {
+						return new Filter({
+							path: oFilterGroupItem.getName(),
+							operator: sap.ui.model.FilterOperator.EQ,
+							value1: sSelectedKey
+						});
+					});
+
+				if (aSelectedKeys.length > 0) {
+					aResult.push(new Filter({
+						filters: aFilters,
+						and: false
+					}));
+				}
+
+				return aResult;
+			}, []);
+
+			oBinding.filter(aTableFilters);
+        }
     }})

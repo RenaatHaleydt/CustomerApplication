@@ -16,6 +16,8 @@ sap.ui.define([
             onInit: function () {
                 // Keeps reference to any of the created sap.m.ViewSettingsDialog-s in this sample
 			    this._mViewSettingsDialogs = {};
+                let aCountry = [{Code: "DE", Name: "Germany"}, {Code: "US", Name:"United States"}]
+                this.getOwnerComponent().getModel("settings").setProperty("/CountryList", aCountry)
             },
 
             onListItemPress: function (oEvent) {
@@ -39,6 +41,9 @@ sap.ui.define([
             handleFilterDialogConfirm: function (oEvent) {
                 SortAndFilterHelper.handleFilterDialogConfirm(oEvent, this, 'customersTable')
             },
+            handleFilterGo: function(oEvent){
+                SortAndFilterHelper.handleFilterBarGo(this, 'customersTable')
+            }, 
             onExport: function(oEvent) {
                 let aCols, oRowBinding, oSettings, oSheet, oTable;
                 

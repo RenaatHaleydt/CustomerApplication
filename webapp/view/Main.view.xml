@@ -8,7 +8,26 @@
         <f:header>
             <f:DynamicPageHeader>
                 <f:content>
-
+                    <fb:FilterBar id="filterbar" persistencyKey="myPersKey" useToolbar="false" search=".handleFilterGo" >
+							<fb:filterGroupItems>
+								<fb:FilterGroupItem name="Country" label="Country" groupName="Group1" visibleInFilterBar="true">
+									<fb:control>
+                                        <Input ></Input>
+										<MultiComboBox
+											name="Name"
+											selectionChange=".onSelectionChange"
+											items="{
+												path: 'settings>/CountryList',
+												templateShareable: true
+											}"
+										>
+											<core:Item key="{settings>Code}" text="{settings>Name}"/>
+										</MultiComboBox>
+									</fb:control>
+								</fb:FilterGroupItem>
+								
+							</fb:filterGroupItems>
+						</fb:FilterBar>
                 </f:content>
             </f:DynamicPageHeader>
         </f:header>
