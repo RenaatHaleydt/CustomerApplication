@@ -1,72 +1,51 @@
 <mvc:View controllerName="ap.customerapplication.controller.Main"
     xmlns="sap.m"
-	xmlns:f="sap.f"
-	xmlns:mvc="sap.ui.core.mvc" displayBlock="true">
-    <Page id="page">
-        <content>
+    xmlns:f="sap.f"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:fb="sap.ui.comp.filterbar"
+    xmlns:core="sap.ui.core" displayBlock="true">
+    <f:DynamicPage id="page">
+        <f:header>
+            <f:DynamicPageHeader>
+                <f:content>
+
+                </f:content>
+            </f:DynamicPageHeader>
+        </f:header>
+        <f:content>
             <Button icon="sap-icon://activities" type="Transparent" press="onNavToOffers" text="Nav to Offers" />
-            <Table
-                id="customersTable"
-                items="{/CustomerSet}"
-            >
-            <headerToolbar>
-				<OverflowToolbar>
-					<Title text="Customers" level="H2"/>
-					<ToolbarSpacer/>
-                    <Button icon="sap-icon://excel-attachment" press="onExport"/>
-					<Button
-						tooltip="Sort"
-						icon="sap-icon://sort"
-						press="handleSortButtonPressed"/>
-					<Button
-						tooltip="Filter"
-						icon="sap-icon://filter"
-						press="handleFilterButtonPressed"/>
-					
-				</OverflowToolbar>
-			</headerToolbar>
+            <Table id="customersTable" items="{/CustomerSet}">
+                <headerToolbar>
+                    <OverflowToolbar>
+                        <Title text="Customers" level="H2"/>
+                        <ToolbarSpacer/>
+                        <Button icon="sap-icon://excel-attachment" press="onExport"/>
+                        <Button tooltip="Sort" icon="sap-icon://sort" press="handleSortButtonPressed"/>
+                        <Button tooltip="Filter" icon="sap-icon://filter" press="handleFilterButtonPressed"/>
+
+                    </OverflowToolbar>
+                </headerToolbar>
                 <columns>
-                    <Column
-                        id="kunnrCol"
-                        width="12em"
-                    >
+                    <Column id="kunnrCol" width="12em">
                         <VBox>
                             <Text text="Kunnr" />
                             <Text text="Name" />
                         </VBox>
                     </Column>
-                    <Column
-                        id="custcountryCol"
-                        minScreenWidth="Tablet"
-                        demandPopin="true"
-                        hAlign="End"
-                    >
+                    <Column id="custcountryCol" minScreenWidth="Tablet" demandPopin="true" hAlign="End">
                         <Text text="Country" />
                     </Column>
-                    <Column
-                        id="custcityCol"
-                        minScreenWidth="Tablet"
-                        demandPopin="true"
-                        hAlign="End"
-                    >
+                    <Column id="custcityCol" minScreenWidth="Tablet" demandPopin="true" hAlign="End">
                         <Text text="City" />
                     </Column>
-                    <Column
-                        id="custpostalcodeCol"
-                        minScreenWidth="Tablet"
-                        demandPopin="true"
-                        hAlign="End"
-                    >
+                    <Column id="custpostalcodeCol" minScreenWidth="Tablet" demandPopin="true" hAlign="End">
                         <Text text="Postal Code" />
                     </Column>
                 </columns>
                 <items>
                     <ColumnListItem type="Navigation" vAlign="Middle" press=".onListItemPress">
                         <cells>
-                            <ObjectIdentifier
-                                title="{Name}"
-                                text="{Kunnr}"
-                            />
+                            <ObjectIdentifier title="{Name}" text="{Kunnr}" />
                             <Text text="{Country}" />
                             <Text text="{City}" />
                             <Text text="{Postalcode}" />
@@ -74,6 +53,6 @@
                     </ColumnListItem>
                 </items>
             </Table>
-        </content>
-    </Page>
+        </f:content>
+    </f:DynamicPage>
 </mvc:View>
