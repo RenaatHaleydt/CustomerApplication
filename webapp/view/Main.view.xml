@@ -8,14 +8,19 @@
         <f:header>
             <f:DynamicPageHeader>
                 <f:content>
+                    
                     <fb:FilterBar id="filterbar" persistencyKey="myPersKey" useToolbar="false" search=".handleFilterGo" >
+                        
 							<fb:filterGroupItems>
-								<fb:FilterGroupItem name="Country" label="Country" groupName="Group1" visibleInFilterBar="true">
+								<fb:FilterGroupItem name="Search" groupName="Group1" visibleInFilterBar="true">
 									<fb:control>
-                                        <Input ></Input>
-										<MultiComboBox
+                                        <SearchField width="100%" showSearchButton="false"/>
+									</fb:control>
+								</fb:FilterGroupItem>
+                                <fb:FilterGroupItem name="Country" label="Country" groupName="Group1" visibleInFilterBar="true">
+									<fb:control>
+                                        <MultiComboBox
 											name="Name"
-											selectionChange=".onSelectionChange"
 											items="{
 												path: 'settings>/CountryList',
 												templateShareable: true
@@ -25,22 +30,22 @@
 										</MultiComboBox>
 									</fb:control>
 								</fb:FilterGroupItem>
-								
 							</fb:filterGroupItems>
 						</fb:FilterBar>
+
                 </f:content>
             </f:DynamicPageHeader>
         </f:header>
         <f:content>
-            <Button icon="sap-icon://activities" type="Transparent" press="onNavToOffers" text="Nav to Offers" />
+            
             <Table id="customersTable" items="{/CustomerSet}">
                 <headerToolbar>
                     <OverflowToolbar>
                         <Title text="Customers" level="H2"/>
                         <ToolbarSpacer/>
+                        <Button icon="sap-icon://activities" type="Transparent" press="onNavToOffers" text="Nav to Offers" />
                         <Button icon="sap-icon://excel-attachment" press="onExport"/>
                         <Button tooltip="Sort" icon="sap-icon://sort" press="handleSortButtonPressed"/>
-                        <Button tooltip="Filter" icon="sap-icon://filter" press="handleFilterButtonPressed"/>
 
                     </OverflowToolbar>
                 </headerToolbar>

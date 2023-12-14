@@ -32,14 +32,8 @@ sap.ui.define([
             handleSortButtonPressed: function () {
                 SortAndFilterHelper.handleSortButtonPressed(this, "ap.customerapplication.fragments.sortDialog")
             },
-            handleFilterButtonPressed: function () {
-                SortAndFilterHelper.handleFilterButtonPressed(this, "ap.customerapplication.fragments.filterDialog")
-            },
             handleSortDialogConfirm: function (oEvent) {
                 SortAndFilterHelper.handleSortDialogConfirm(oEvent, this, "customersTable")
-            },
-            handleFilterDialogConfirm: function (oEvent) {
-                SortAndFilterHelper.handleFilterDialogConfirm(oEvent, this, 'customersTable')
             },
             handleFilterGo: function(oEvent){
                 SortAndFilterHelper.handleFilterBarGo(this, 'customersTable')
