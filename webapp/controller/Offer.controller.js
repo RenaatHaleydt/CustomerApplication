@@ -21,19 +21,35 @@ sap.ui.define([
                 this.getOwnerComponent().getRouter().navTo("master");
             },
             onListItemPress: function(oEvent){
-                var oContext = oEvent.getSource().getBindingContext();
-
+                let that = this
+                let oContext = oEvent.getSource().getBindingContext();
                 // Ensure oContext is valid before proceeding
                 if (!oContext) {
                     // Handle the error or return
                     return;
                 }
+                // let oOffer = oContext.getObject()
+
+                this.getOwnerComponent().getModel().read(oContext.getPath(), {
+                    urlParameters: {
+                        "$format": "json",
+                        "$expand": "OfferMaterials,OfferMaterials/Material"
+                    },
+                    success: oData => {
+                        let oOfferModel = new sap.ui.model.json.JSONModel(oData);
+
+                        that.getView().setModel(oOfferModel, "offerModel");
+                        that.oDialog.open()
+                    },
+                    error: oError => {
+                        
+                    }
+                })
 
                 
-                let oOfferModel = new sap.ui.model.json.JSONModel(oContext.getObject());
 
-                this.getView().setModel(oOfferModel, "offerModel");
-                this.oDialog.open()
+                
+                
             },
             onCloseDialog: function(oEvent){
                     

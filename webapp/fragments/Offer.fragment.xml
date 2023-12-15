@@ -8,6 +8,15 @@
     >
         <Label text="Customer" />
         <Input value="{offerModel>/Kunnr}" />
+        <List
+		    headerText="Materials"
+		    headerLevel="H2"
+            items="{
+                path: 'offerModel>/OfferMaterials/results'
+            }" >
+		<StandardListItem
+			title="{offerModel>Material/Description}"/>
+	</List>
 
         <Button text="Cancel" press=".onCloseDialog"/>
 
